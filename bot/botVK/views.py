@@ -5,7 +5,7 @@ import json
 import vk
 import random
 
-session = vk.Session(access_token="796c20604eaa3e72ca38cb6e3644fcd94bf9adab8ff5612316c591755f1d33492e7445c21acb8307f204c")
+session = vk.Session(access_token="")
 vkAPI = vk.API(session)
 
 
