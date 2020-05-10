@@ -114,6 +114,15 @@ cursor = connect.cursor()
 # connect.commit()
 
 # query = """
+# DROP TABLE Groups
+# """
+# cursor.execute(query)
+# query = """
+# DROP TABLE Users
+# """
+# cursor.execute(query)
+
+# query = """
 # CREATE TABLE Groups(
 #     id INTEGER PRIMARY KEY AUTOINCREMENT,
 #     groupName TEXT
@@ -124,8 +133,9 @@ cursor = connect.cursor()
 
 # query = """
 # CREATE TABLE Users(
-#     id INTEGER PRIMARY KEY AUTOINCREMENT,
-#     groupId TEXT
+#     id INTEGER PRIMARY KEY,
+#     groupId INTEGER,
+#     FOREIGN KEY (groupId) REFERENCES Groups(id)
 # );
 # """
 # cursor.execute(query)
@@ -208,6 +218,7 @@ cursor = connect.cursor()
 # """
 # cursor.execute(query)
 # connect.commit()
+
 # query = """
 # INSERT INTO answer(msg, answ) VALUES
 # ('/smile', 'Я могу рассказать рецепты смайликов!\
