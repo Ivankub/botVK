@@ -6,19 +6,164 @@ connect = sqlite3.connect('usersDB.sqlite')
 cursor = connect.cursor()
 
 # query = """
+# CREATE TABLE clicker_1(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     name TEXT,
+#     vk_id TEXT,
+#     last_time INT,
+#     sec INT,
+#     buy_01 INT,
+#     buy_02 INT,
+#     buy_05 INT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+# query = """
+# CREATE TABLE hellownwess(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     txt TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+# query = """
+# CREATE TABLE hellownwess_answ(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     answ_txt TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+
+# query = """
+# CREATE TABLE byenwess(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     txt TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+# query = """
+# CREATE TABLE byenwess_answ(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     answ_txt TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+
+# query = """
+# CREATE TABLE animals(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     txt TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+# query = """
+# CREATE TABLE animals_answ(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     answ_txt TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+
+# query = """
+# CREATE TABLE phrases(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     txt TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+# query = """
+# CREATE TABLE phrases_answ(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     answ_txt TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+# query = """
+# CREATE TABLE bad_phrases(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     txt TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+# query = """
+# CREATE TABLE bad_phrases_answ(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     answ_txt TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+# query = """
+# CREATE TABLE Groups(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     groupName TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+# query = """
+# CREATE TABLE Users(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     groupId TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
+
+# query = """
+# DROP TABLE clicker
+# """
+# cursor.execute(query)
+
+# query = """
 # CREATE TABLE clicker(
 #     id INTEGER PRIMARY KEY AUTOINCREMENT,
 #     name TEXT,
 #     vk_id TEXT,
 #     money INT,
+#     big_money INT,
 #     click INT,
-#     buy_1 INT,
-#     buy_2 INT,
-#     buy_5 INT
+#     sec INT,
+#     buy_1 BIGINT,
+#     buy_2 BIGINT,
+#     buy_5 BIGINT,
+#     buy_25 BIGINT,
+#     buy_100 BIGINT,
+#     buy_500 BIGINT,
+#     buy_01 BIGINT,
+#     buy_02 BIGINT,
+#     buy_05 BIGINT,
+#     buy_025 BIGINT,
+#     buy_0100 BIGINT,
+#     buy_0500 BIGINT,
+#     last_time INT
 # );
 # """
 # cursor.execute(query)
 # connect.commit()
+
+
 
 # query = """
 # CREATE TABLE owners(
@@ -54,7 +199,15 @@ cursor = connect.cursor()
 # cursor.execute(query)
 # connect.commit()
 
-
+# query = """
+# CREATE TABLE answer(
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     msg TEXT,
+#     answ TEXT
+# );
+# """
+# cursor.execute(query)
+# connect.commit()
 # query = """
 # INSERT INTO answer(msg, answ) VALUES
 # ('/smile', 'Я могу рассказать рецепты смайликов!\
@@ -103,10 +256,7 @@ cursor = connect.cursor()
 # DROP TABLE cars
 # """
 # cursor.execute(query)
-# query = """
-# DROP TABLE info
-# """
-# cursor.execute(query)
+
 
 def add(owner, driver_card, mark, model, produced, number, color):
     query = """
@@ -188,9 +338,9 @@ def mark_color_select(mark, color):
 
         
 
-mark_select("'Toyota'")
+# mark_select("'Toyota'")
 
-mark_color_select("'Toyota'", "'black'")
+# mark_color_select("'Toyota'", "'black'")
 
 # add("'Ivan'", 101, "'Toyota'", "'Bat123'", "'Japan'", 2134, "'red'")
 # add("'Karl'", 102, "'Lada'", "'KALINA'", "'Russia'", 3628, "'red'")
@@ -223,6 +373,15 @@ mark_color_select("'Toyota'", "'black'")
 # result = cursor.fetchall()
 # print(result)
 
+# query = """
+# UPDATE clicker SET money = {0} WHERE vk_id = "{1}";
+# """.format(999999999, "509539783")
+# cursor.execute(query)
+
+# query = """
+# UPDATE clicker SET big_money = {0} WHERE vk_id = "{1}";
+# """.format(0, "432949478")
+# cursor.execute(query)
 #save
 connect.commit()
 
