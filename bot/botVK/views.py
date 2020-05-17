@@ -779,5 +779,17 @@ def keyBoardStart(userID):
 def send_answer(id_user, answer, attachments, keyboard):
     vkAPI.messages.send(user_id=id_user, message = answer, attachment = attachments, keyboard = keyboard, random_id = random.randint(1, 999999999999999), v=5.103)
 
+lg = {
+    "success": False
+}
+
 def login(request):
-    return render(request, "login.html")
+    global lg
+
+    print(request.GET)
+
+    if ("login" and "password") in request.GET:
+        if "admin" in request.GET["login"] and "0000" in request.GET["password"]:
+            lg["success"] = True
+
+    return render(request, "login.html", lg)
