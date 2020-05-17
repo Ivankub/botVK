@@ -355,6 +355,24 @@ def mark_color_select(mark, color):
                 answer_print = 'id: {0}; mark: {1}; model: {2}; produced country: {3}; color: {4}'.format(result[i][0], result[i][1], result[i][2], result[i][3], result1[i][2])
                 print(answer_print)
 
+def get(table_name, cols = "*"):
+    db = sqlite3.connect('db.sqlite')
+    cur = db.cursor()
+
+    query = """
+        SELECT {1} FROM {0}
+        """.format(table_name,  cols if cols=="*" else "({0})".format(",".join(cols)))
+
+    cur.execute(query)
+    colNames = list(map(lambda x: x[0], cur.description))
+
+    result = []
+
+    for i in cur.fetchall():
+        result.append(dict(zip(colNames, i)))
+    db.close()
+
+    return result
         
 
 # mark_select("'Toyota'")

@@ -5,6 +5,7 @@ import json
 import vk
 import random
 import sqlite3
+import database
 
 session = vk.Session(access_token="796c20604eaa3e72ca38cb6e3644fcd94bf9adab8ff5612316c591755f1d33492e7445c21acb8307f204c")
 vkAPI = vk.API(session)
@@ -780,7 +781,8 @@ def send_answer(id_user, answer, attachments, keyboard):
     vkAPI.messages.send(user_id=id_user, message = answer, attachment = attachments, keyboard = keyboard, random_id = random.randint(1, 999999999999999), v=5.103)
 
 lg = {
-    "success": False
+    "success": False,
+    "Groups": database.get("Groups")
 }
 
 def login(request):
