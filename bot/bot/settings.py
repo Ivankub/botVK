@@ -25,7 +25,7 @@ SECRET_KEY = '#h5hho((+1p^z%fcyt97+lm#a#x35ba)abj!pr+61zr24r=pb1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['botvkivan-492fcdeb.localhost.run']
+ALLOWED_HOSTS = ['botvkivand-8f1d2df8.localhost.run']
 
 
 # Application definition
@@ -54,7 +54,7 @@ ROOT_URLCONF = 'bot.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["./botVK/Templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

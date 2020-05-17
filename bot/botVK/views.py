@@ -17,7 +17,7 @@ def bot(request):
     body = json.loads(request.body)
     print(body)
     if body == { "type": "confirmation", "group_id": 194135901 }:
-        return HttpResponse('dfe10bc5')
+        return HttpResponse('0f9cc75b')
     if body["type"] == "message_new":
         answer_is_ok = 0
         change_func = 0
@@ -26,6 +26,7 @@ def bot(request):
         userInfo = vkAPI.users.get(user_ids = userID, v=5.103)[0]
         time = body["object"]["message"]["date"]
         message = body["object"]["message"]["text"]
+        payload = body["object"]["message"]["payload"]
 
         connect = sqlite3.connect('usersDB.sqlite')
         cursor = connect.cursor()
@@ -62,6 +63,7 @@ def bot(request):
         connect.commit()
         connect.close()
 
+
         # if message == "Привет" or message == "Прив" or message == "привет" or message == "hello" or message == "Hello" or message == "Здарова":
         #     answ = random.randint(1, 100)
         #     if answ >= 1 and answ <= 25:
@@ -90,6 +92,74 @@ def bot(request):
         #         \n😂\
         #         \n🤣'
         #     vkAPI.messages.send(user_id=userID, message = answer, random_id = random.randint(1, 999999999999999), v=5.103)
+        if payload == """{"command":"start"}""" and answer_is_ok == 0:
+            answer_is_ok = 1
+            answer = "Вы начали работу с ботом"
+            vkAPI.messages.send(user_id=userID, message = answer, random_id = random.randint(1, 999999999999999), v=5.103)
+            answer = "Команды: /satrt\
+                \n/say - повторяет то, что написано после команды\
+                \nПривет - приветствие\
+                \nПовтори - то же, что и /say"
+            # vkAPI.messages.send(user_id=userID, message = answer, random_id = random.randint(1, 999999999999999), v=5.103)
+            attachments = ""
+            keyboard = ""
+            vkAPI.messages.send(user_id=userID, message = answer, attachment = attachments, random_id = random.randint(1, 999999999999999), v=5.103)
+            # send_answer(userID, answer, attachments, keyboard)
+            id_user = userID
+            keyBoardStart(id_user)
+        if payload == """{"command":"Admin"}""" and answer_is_ok == 0:
+            answer_is_ok = 1
+
+            connect = sqlite3.connect('usersDB.sqlite')
+            cursor = connect.cursor()
+            query = """
+            INSERT INTO Users(groupId, id_vk) VALUES
+            (
+                {0},
+                '{1}'
+            );
+            """.format(2, str(userID))
+            cursor.execute(query)
+            connect.commit()
+
+            answer = "Вы выбрали Admin!"
+            vkAPI.messages.send(user_id=userID, message = answer, random_id = random.randint(1, 999999999999999), v=5.103)
+            
+            connect.close
+        elif payload == """{"command":"Moder"}""" and answer_is_ok == 0:
+            answer_is_ok = 1
+            answer = "Вы выбрали Moder!"
+            vkAPI.messages.send(user_id=userID, message = answer, random_id = random.randint(1, 999999999999999), v=5.103)
+            connect = sqlite3.connect('usersDB.sqlite')
+            cursor = connect.cursor()
+            query = """
+            INSERT INTO Users(groupId, id_vk) VALUES
+            (
+                {0},
+                '{1}'
+            );
+            """.format(1, str(userID))
+            
+            cursor.execute(query)
+            connect.commit()
+            connect.close
+        elif payload == """{"command":"Usual"}""" and answer_is_ok == 0:
+            answer_is_ok = 1
+            answer = "Вы выбрали Usual!"
+            vkAPI.messages.send(user_id=userID, message = answer, random_id = random.randint(1, 999999999999999), v=5.103)
+            connect = sqlite3.connect('usersDB.sqlite')
+            cursor = connect.cursor()
+            query = """
+            INSERT INTO Users(groupId, id_vk) VALUES
+            (
+                {0},
+                '{1}'
+            );
+            """.format(3, str(userID))
+            cursor.execute(query)
+            connect.commit()
+            connect.close
+
         if (len(message) >= 7 and (message[0:7] == "Повтори" or message[0:7] == "повтори" or message[0:9] == "Повтори '" or message[0:9] == 'Повтори "' or message[0:14] == "Привет повтори" or message[0:15] == "Привет, повтори")) or message[0:3] == "say" or message[0:4] == "/say":
             leng = len(message)
             answer = message[7:leng]
@@ -102,27 +172,23 @@ def bot(request):
             elif message[0:3] == "say" or message[0:4] == "/say":
                 answer = message[4:leng]
             vkAPI.messages.send(user_id=userID, message = answer, random_id = random.randint(1, 999999999999999), v=5.103)
-        # elif message == "start" or message == "/start" or message == "Start" or message == "/Start":
-            # connect = sqlite3.connect('usersDB.sqlite')
-            # cursor = connect.cursor()
-            # query = """
-            # SELECT msg FROM answer
-            # """
-            # cursor.execute(query)
-            # answer = cursor.fetchall()
-            # vkAPI.messages.send(user_id=userID, message = answer, random_id = random.randint(1, 999999999999999), v=5.103)
-            # connect.commit()
-            # connect.close()
-            # answ = random.randint(1, 100)
-            # if answ >= 1 and answ <= 50:
-            #     answer = "Вы начали работу с ботом"
-            # elif answ >= 51 and answ <= 100:
-            #     answer = "Начало вашей работы с ботом"
-            # vkAPI.messages.send(user_id=userID, message = answer, random_id = random.randint(1, 999999999999999), v=5.103)
-            # answer = "Команды: /satrt\
-            #     \n/say - повторяет то, что написано после команды\
-            #     \nПривет - приветствие\
-            #     \nПовтори - то же, что и /say"
+        # elif message == "start" or message == "/start" or message == "Start" or message == "/Start" or message == "Начать":
+        #     # connect = sqlite3.connect('usersDB.sqlite')
+        #     # cursor = connect.cursor()
+        #     # query = """
+        #     #     SELECT msg FROM answer
+        #     # """
+        #     # cursor.execute(query)
+        #     # answer = cursor.fetchall()
+        #     # connect.commit()
+        #     # connect.close()
+        #     answer = "Вы начали работу с ботом"
+        #     vkAPI.messages.send(user_id=userID, message = answer, random_id = random.randint(1, 999999999999999), v=5.103)
+        #     answer = "Команды: /satrt\
+        #         \n/say - повторяет то, что написано после команды\
+        #         \nПривет - приветствие\
+        #         \nПовтори - то же, что и /say"
+        #     vkAPI.messages.send(user_id=userID, message = answer, random_id = random.randint(1, 999999999999999), v=5.103)
             
         # elif message == '' and body["object"]["message"]["attachments"][0]["type"] == "sticker":
         #     answer = 'I am not understand stickers'
@@ -659,5 +725,59 @@ def bot(request):
             # vkAPI.messages.send(user_id=userID, message = answer, random_id = random.randint(1, 999999999999999), v=5.103)
             connect.commit()
             connect.close()
-
+        
+    # def keyBoardStart(request, userID):
+    #     answ = "Привет! Выбери группу!"
+    #     keyboard = json.dumps({
+    #         "one_time": True,
+    #         "buttons":[[
+    #             {
+    #                 "action":{
+    #                     "type":"text",
+    #                     "label":"Admin",
+    #                     "payload":"""{"command":"Admin"}"""
+    #                 },
+    #                 "color":"negative"
+    #             },
+    #         ]]
+    #     })
+    #     send_answer(userID, answ, "", "")
     return HttpResponse("ok")
+
+def keyBoardStart(userID):
+    answ = "Привет! Выбери группу!"
+    keyboard = json.dumps({
+        "one_time": True,
+        "buttons":[[
+            {
+                "action":{
+                    "type":"text",
+                    "label":"Admin",
+                    "payload":"""{"command":"Admin"}"""
+                },
+                "color":"negative"
+            },
+            {
+                "action":{
+                    "type":"text",
+                    "label":"Moder",
+                    "payload":"""{"command":"Moder"}"""
+                },
+                "color":"positive"
+            },
+            {
+                "action":{
+                    "type":"text",
+                    "label":"Usual",
+                    "payload":"""{"command":"Usual"}"""
+                },
+                "color":"primary"
+            },
+        ]]
+    })
+    send_answer(userID, answ, "", keyboard)
+def send_answer(id_user, answer, attachments, keyboard):
+    vkAPI.messages.send(user_id=id_user, message = answer, attachment = attachments, keyboard = keyboard, random_id = random.randint(1, 999999999999999), v=5.103)
+
+def login(request):
+    return render(request, "login.html")

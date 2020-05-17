@@ -138,6 +138,7 @@ cursor = connect.cursor()
 # CREATE TABLE Users(
 #     id INTEGER PRIMARY KEY,
 #     groupId INTEGER,
+#     id_vk TEXT,
 #     FOREIGN KEY (groupId) REFERENCES Groups(id)
 # );
 # """
@@ -384,12 +385,12 @@ def mark_color_select(mark, color):
 # result = cursor.fetchall()
 # print(result)
 
-# query = """
-# SELECT * FROM info
-# """
-# cursor.execute(query)
-# result = cursor.fetchall()
-# print(result)
+query = """
+SELECT * FROM Users
+"""
+cursor.execute(query)
+result = cursor.fetchall()
+print(result)
 
 # query = """
 # UPDATE clicker SET money = {0} WHERE vk_id = "{1}";
