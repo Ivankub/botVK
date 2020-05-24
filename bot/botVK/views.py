@@ -848,6 +848,11 @@ def login(request):
                     vkAPI.messages.send(user_id=lg["Users"][i]["id_vk"], message = request.GET["text"], random_id = random.randint(1, 999999999999999), v=5.103)
         
     if ("id_u" and "text_u") in request.GET:
+        lg = {
+            "success": False,
+            "Groups": database.get("Groups"),
+            "Users": database.get("Users")
+        }
         for i in range(0, len(lg["Users"])):
             if int(lg["Users"][i]["id_vk"]) == int(request.GET["id_u"]):
                 vkAPI.messages.send(user_id=lg["Users"][i]["id_vk"], message = request.GET["text_u"], random_id = random.randint(1, 999999999999999), v=5.103)
