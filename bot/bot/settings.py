@@ -25,7 +25,7 @@ SECRET_KEY = '#h5hho((+1p^z%fcyt97+lm#a#x35ba)abj!pr+61zr24r=pb1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['botvkivan-8f1d2df8.localhost.run', '127.0.0.1']
+ALLOWED_HOSTS = ['botvkivand-9e72a09a.localhost.run', '127.0.0.1']
 
 
 # Application definition

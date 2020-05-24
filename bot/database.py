@@ -356,8 +356,8 @@ def mark_color_select(mark, color):
                 print(answer_print)
 
 def get(table_name, cols = "*"):
-    db = sqlite3.connect('db.sqlite')
-    cur = db.cursor()
+    connect = sqlite3.connect('usersDB.sqlite')
+    cur = connect.cursor()
 
     query = """
         SELECT {1} FROM {0}
@@ -370,7 +370,7 @@ def get(table_name, cols = "*"):
 
     for i in cur.fetchall():
         result.append(dict(zip(colNames, i)))
-    db.close()
+    connect.close()
 
     return result
         
@@ -405,6 +405,13 @@ def get(table_name, cols = "*"):
 
 query = """
 SELECT * FROM Users
+"""
+cursor.execute(query)
+result = cursor.fetchall()
+print(result)
+
+query = """
+SELECT * FROM Groups
 """
 cursor.execute(query)
 result = cursor.fetchall()

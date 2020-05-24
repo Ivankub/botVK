@@ -14,9 +14,12 @@
     #success{
         display: none;
     }
+    #success_two{
+        display: block;
+    }
 </style>
 <body>
-    <div class="container" style="margin-top: 50px;" {% if success == True %} id="success"{% endif %}>
+    <div class="container" style="margin-top: 50px;" {% if success == True %} id="success"{% endif %} {% if success == False %} id="success_two"{% endif %}>
         <div class="row justify-content-center">
             <form action="" method="GET">
                 <div class="form-group row">
@@ -34,24 +37,38 @@
             </form>
         </div>
     </div>
-    <div class="container" style="margin-top: 50px;">
+    <div class="container" style="margin-top: 50px;" {% if success == False %} id="success"{% endif %} {% if success == True %} id="success_two"{% endif %}>
         <div class="row justify-content-center">
             <form action="" method="GET">
                 <div class="form-group row">
                     <label for="">Тип</label>
-                    <input type="text" name="type" id="type" class="form-control dropdown" placeholder="Выберите тип" aria-describedby="helpId">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Выберите тип
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <input type="button" name="Admin" id="type" class="form-control" placeholder="Admin" aria-describedby="helpId" value="Admin">
-                            <input type="button" name="Moder" id="type" class="form-control" placeholder="Moder" aria-describedby="helpId" value="Moder">
-                            <input type="button" name="Usual" id="type" class="form-control" placeholder="Usual" aria-describedby="helpId" value="Usual">
-                        </div>
-                        </div>
-                    </div>
-                
+                    <select name="type" id="type" class="form-control">
+                        <option value="Admin">Admin</option>
+                        <option value="Moder">Moder</option>
+                        <option value="Usual">Usual</option>
+                    </select>                    
+                </div>
+                <div class="form-group row">
+                    <textarea name="text" id="text" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group row">
+                    <label for=""></label>
+                    <input type="submit" name="sb" id="sb" class="form-control" placeholder="Введите пароль" aria-describedby="helpId">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container" style="margin-top: 50px;" {% if success == False %} id="success"{% endif %} {% if success == True %} id="success_two"{% endif %}>
+        <div class="row justify-content-center">
+            <form action="" method="GET">
+                <div class="form-group row">
+                    <label for="">Id</label>
+                    <textarea name="id_u" id="id_u" cols="30" rows="2" maxlength="9"></textarea>
+                </div>
+                <div class="form-group row">
+                    <label for="">text</label>
+                    <textarea name="text_u" id="text_u" cols="30" rows="10"></textarea>
+                </div>
                 <div class="form-group row">
                     <label for=""></label>
                     <input type="submit" name="sb" id="sb" class="form-control" placeholder="Введите пароль" aria-describedby="helpId">
