@@ -25,9 +25,9 @@ SECRET_KEY = '#h5hho((+1p^z%fcyt97+lm#a#x35ba)abj!pr+61zr24r=pb1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['botvkivand-9e72a09a.localhost.run', '127.0.0.1', 'dashboard.heroku.com/apps/botvkdivan']
+ALLOWED_HOSTS = ['botvkivand-9e72a09a.localhost.run', '127.0.0.1', 'botvkdivan.herokuapp.com/']
 
-CORS_ORIGIN_WHITELIST = ["https://dashboard.heroku.com/apps/botvkdivan"]
+CORS_ORIGIN_WHITELIST = ["https://botvkdivan.herokuapp.com/"]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
