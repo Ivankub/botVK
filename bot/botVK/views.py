@@ -18,7 +18,7 @@ def bot(request):
     body = json.loads(request.body)
     print(body)
     if body == { "type": "confirmation", "group_id": 194135901 }:
-        return HttpResponse('98359f85')
+        return HttpResponse('cd20fe60')
     if body["type"] == "message_new":
         answer_is_ok = 0
         change_func = 0
